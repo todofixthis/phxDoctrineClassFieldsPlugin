@@ -74,6 +74,7 @@ The `ClassFields` behavior accepts the following options:
   - `interface`:  interface that a stored classname must implement to be valid (default: `null`).
   - `length`:  maximum length of class names (default: `200`).
   - `magic`:  whether to create magic methods for instantiating the class (default: `true`).
+    - You can specify a string value for this option, which will set the name of the magic method.
   - `notnull`:  whether the classname must not be empty (default: `false`).
   - `unique`: whether the classname must be unique (default: `false`).
 - `magic`: whether to allow creating magic methods for any column (default: `true`).
@@ -98,7 +99,8 @@ Fully-loaded example:
               notnull:    true
             adapter:
               interface:  IMyModelAdapter
-              length:     300 # These class names tend to get lengthy....
+              magic:      getAdapterObject  # For compatiblity with legacy code.
+              length:     300               # These names tend to get lengthy.
               index:      adapter_classname_idx
               unique:     true
       columns:
