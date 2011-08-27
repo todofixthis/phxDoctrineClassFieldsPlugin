@@ -73,10 +73,12 @@ The `ClassFields` behavior accepts the following options:
   - `index`:  name of the index for the class field.  If blank, the field is unindexed (default: `""`).
   - `interface`:  interface that a stored classname must implement to be valid (default: `null`).
   - `length`:  maximum length of class names (default: `200`).
-  - `magic`:  whether to create magic methods for instantiating the class (default: `true`). If set to a string value, it will override the name of the magic method for this column.
+  - `magic`:  whether to create magic methods for instantiating the class (default: `true`).  
+    If set to a string value, it will override the name of the magic method for this column.
   - `notnull`:  whether the classname must not be empty (default: `false`).
   - `unique`: whether the classname must be unique (default: `false`).
-- `magic`: whether to allow creating magic methods for any column (default: `true`).  If set to a string value, it will override the magic method naming pattern for the table.
+- `magic`: whether to allow creating magic methods for any column (default: `true`).  
+  If set to a string value, it will override the magic method naming pattern for the table.
 
 Note that `magic` only controls the creation of `get*Instance()` methods.  The
   `getInstance()` method will always be available.
