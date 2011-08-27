@@ -181,7 +181,9 @@ class ClassFields extends Doctrine_Template
    *
    * Override this method in your model class if desired.
    *
-   * @param object $instance
+   * @param object    $instance
+   * @param mixed,... Additional parameters that were passed to getInstance().
+   *  Note that there are no guarantees that any of these are present or valid.
    *
    * @return mixed usually void, but if this method returns anything, it will
    *  override what getInstance() sends back.
@@ -189,7 +191,7 @@ class ClassFields extends Doctrine_Template
    * @access protected only marked public because of the way Doctrine works, but
    *  this method should not be considered part of the model class' API.
    */
-  public function postGetInstance( $instance )
+  public function postGetInstance( $instance /*, ... */ )
   {
   }
 }
