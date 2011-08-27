@@ -112,13 +112,15 @@ class ClassFields extends Doctrine_Template
 
   /** Return the instance for a class field.
    *
-   * @param string $field
+   * @param string    $field
+   * @param mixed,...         Additional parameters passed to the
+   *  postGetInstance hook.
    *
    * @return mixed
    * @throws LogicException if the specified field is not a class field.
    * @throws RuntimeException if the stored class name is invalid.
    */
-  public function getInstance( $field )
+  public function getInstance( $field /*, ... */ )
   {
     /* Validate $field. */
     if( isset($this->_options['fields'][$field]) )
@@ -152,13 +154,16 @@ class ClassFields extends Doctrine_Template
           }
         }
 
-        /* Post-process and return. */
+
         $obj = new $class();
-        return (
-          is_null($alt = $record->postGetInstance($obj))
-            ? $obj
-            : $alt
-        );
+
+        /* Post-process and return. */
+        $args = func_get_args();
+        $args[0] = $obj;
+
+        $alt = call_user_func_array(array($record, 'postGetInstance'), $args);
+
+        return (is_null($alt) ? $obj : $alt);
 
       }
 

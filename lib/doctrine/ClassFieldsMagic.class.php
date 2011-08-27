@@ -81,7 +81,7 @@ class ClassFieldsMagic extends Doctrine_Template
 
       return call_user_func_array(
         array($this->getInvoker(), $callable),
-        $arguments
+        array_merge($arguments, $args)
       );
     }
 
