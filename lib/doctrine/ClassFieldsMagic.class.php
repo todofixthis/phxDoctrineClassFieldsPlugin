@@ -53,7 +53,11 @@ class ClassFieldsMagic extends Doctrine_Template
         $meth = (
           is_string($options['magic'])
             ? $options['magic']
-            : sprintf('get%sInstance', Doctrine_Inflector::classify($field))
+            : str_replace(
+                '*',
+                Doctrine_Inflector::classify($field),
+                $template->getOption('magic')
+              )
         );
 
         $template->getTable()->setMethodOwner($meth, $this);

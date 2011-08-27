@@ -29,7 +29,7 @@ class ClassFields extends Doctrine_Template
   protected
     $_options = array(
       'fields'  => array(),
-      'magic'   => true
+      'magic'   => 'get*Instance'
     );
 
   /** Inject custom functionality into the table definition.
