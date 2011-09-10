@@ -26,7 +26,4 @@
  */
 class phxDoctrineClassFieldsPluginConfiguration extends sfPluginConfiguration
 {
-  public function initialize(  )
-  {
-  }
 }
