@@ -44,6 +44,7 @@ class ClassFields extends Doctrine_Template
       'length'    => 200,
       'magic'     => true,
       'notnull'   => false,
+      'default'   => null,
       'unique'    => false
     );
 
@@ -77,7 +78,8 @@ class ClassFields extends Doctrine_Template
 
       /* Configure column for class field. */
       $columnOptions = array(
-        'notnull' => (bool) $options['notnull']
+          'notnull' => (bool) $options['notnull']
+        , 'default' => $options['default']
       );
 
       if( $options['unique'] and ! $options['index'] )
