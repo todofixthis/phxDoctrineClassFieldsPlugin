@@ -30,16 +30,13 @@
  */
 class ClassFieldsMagic extends Doctrine_Template
 {
-  protected
-    /** @var ClassFields */
-    $_template,
-    $_methods;
+  /** @var ClassFields */
+  protected $_template;
+  protected $_methods;
 
   /** Init the class instance.
    *
    * @param ClassFields $template
-   *
-   * @return void
    */
   public function __construct( ClassFields $template )
   {
