@@ -22,38 +22,39 @@
  * @author Phoenix Zerin <phoenix@todofixthis.com>
  *
  * @package phxDoctrineClassFieldsPlugin
- * @subpackage lib.doctrine
+ * @subpackage lib
  */
-class ClassFields extends Doctrine_Template
+class ClassFields
+  extends Doctrine_Template
 {
   protected
     $_options = array(
-      'fields'  => array(),
-      'magic'   => 'get*Instance'
+        'fields'  => array()
+      , 'magic'   => 'get*Instance'
     );
 
-  /** Inject custom functionality into the table definition.
+  /** Applies custom table configuration
    *
    * @return void
    */
   public function setTableDefinition(  )
   {
     $defaults = array(
-      'index'     => '',
-      'interface' => null,
-      'length'    => 200,
-      'magic'     => true,
-      'notnull'   => false,
-      'default'   => null,
-      'unique'    => false
+        'index'     => ''
+      , 'interface' => null
+      , 'length'    => 200
+      , 'magic'     => true
+      , 'notnull'   => false
+      , 'default'   => null
+      , 'unique'    => false
     );
 
     if( ! $fields = $this->getOption('fields') )
     {
       throw new InvalidArgumentException(sprintf(
-        '%s template specified for %s, but no class fields were defined.',
-          get_class($this),
-          $this->getTable()->getTableName()
+        '%s template specified for %s, but no class fields were defined.'
+          , get_class($this)
+          , $this->getTable()->getTableName()
       ));
     }
 
@@ -63,14 +64,14 @@ class ClassFields extends Doctrine_Template
       if( ! is_array($options) )
       {
         throw new InvalidArgumentException(sprintf(
-          'Invalid format for %s ClassFields field; array value expected.',
-            $field
+          'Invalid format for %s ClassFields field; array value expected.'
+            , $field
         ));
       }
 
       $options = array_merge(
-        $defaults,
-        array_intersect_key($options, $defaults)
+          $defaults
+        , array_intersect_key($options, $defaults)
       );
 
       /* Store validated options back to $_options. */
@@ -137,8 +138,8 @@ class ClassFields extends Doctrine_Template
         if( ! class_exists($class) )
         {
           throw new RuntimeException(sprintf(
-            'No such class "%s".',
-              $class
+            'No such class "%s".'
+              , $class
           ));
         }
 
@@ -149,9 +150,9 @@ class ClassFields extends Doctrine_Template
           if( ! $ref->implementsInterface($interface) )
           {
             throw new RuntimeException(sprintf(
-              'Invalid class %s; %s expected.',
-                $class,
-                $interface
+              'Invalid class %s; %s expected.'
+                , $class
+                , $interface
             ));
           }
         }
@@ -160,8 +161,8 @@ class ClassFields extends Doctrine_Template
         $obj = new $class();
 
         /* Post-process and return. */
-        $args = func_get_args();
-        $args[0] = $obj;
+        $args     = func_get_args();
+        $args[0]  = $obj;
 
         $alt = call_user_func_array(array($record, 'postGetInstance'), $args);
 
@@ -173,8 +174,8 @@ class ClassFields extends Doctrine_Template
     }
 
     throw new LogicException(sprintf(
-      'Field %s is not a class field.',
-        $field
+      'Field %s is not a class field.'
+        , $field
     ));
   }
 

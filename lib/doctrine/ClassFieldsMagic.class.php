@@ -26,9 +26,10 @@
  * @author Phoenix Zerin <phoenix@todofixthis.com>
  *
  * @package phxDoctrineClassFieldsPlugin
- * @subpackage lib.doctrine
+ * @subpackage lib
  */
-class ClassFieldsMagic extends Doctrine_Template
+class ClassFieldsMagic
+  extends Doctrine_Template
 {
   /** @var ClassFields */
   protected $_template;
@@ -51,9 +52,9 @@ class ClassFieldsMagic extends Doctrine_Template
           is_string($options['magic'])
             ? $options['magic']
             : str_replace(
-                '*',
-                Doctrine_Inflector::classify($field),
-                $template->getOption('magic')
+                  '*'
+                , Doctrine_Inflector::classify($field)
+                , $template->getOption('magic')
               )
         );
 
@@ -77,15 +78,15 @@ class ClassFieldsMagic extends Doctrine_Template
       list($callable, $arguments) = $this->_methods[$meth];
 
       return call_user_func_array(
-        array($this->getInvoker(), $callable),
-        array_merge($arguments, $args)
+          array($this->getInvoker(), $callable)
+        , array_merge($arguments, $args)
       );
     }
 
     throw new RuntimeException(sprintf(
-      'Method %s was incorrectly wired to %s.  This is a bug with phxDoctrineClassFieldsPlugin; please log an issue on GitHub.',
-        $meth,
-        get_class($this)
+      'Method %s was incorrectly wired to %s.  This is a bug with phxDoctrineClassFieldsPlugin; please log an issue on GitHub.'
+        , $meth
+        , get_class($this)
     ));
   }
 }

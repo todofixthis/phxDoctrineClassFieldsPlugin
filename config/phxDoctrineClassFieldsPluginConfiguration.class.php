@@ -24,6 +24,7 @@
  * @package phxDoctrineClassFieldsPlugin
  * @subpackage config
  */
-class phxDoctrineClassFieldsPluginConfiguration extends sfPluginConfiguration
+class phxDoctrineClassFieldsPluginConfiguration
+  extends sfPluginConfiguration
 {
 }
