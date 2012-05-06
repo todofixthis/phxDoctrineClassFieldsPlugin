@@ -35,6 +35,7 @@ class ClassFields
 
   /** Applies custom table configuration
    *
+   * @throws InvalidArgumentException If options are malformed.
    * @return void
    */
   public function setTableDefinition(  )

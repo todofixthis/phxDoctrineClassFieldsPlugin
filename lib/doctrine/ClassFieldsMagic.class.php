@@ -69,6 +69,8 @@ class ClassFieldsMagic
    * @param string  $meth
    * @param array   $args
    *
+   * @throws RuntimeException If the method was wired up incorrectly (this
+   *  represents a bug with the plugin, not your code).
    * @return mixed
    */
   public function __call( $meth, $args )
